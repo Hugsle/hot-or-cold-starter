@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	
 	/*--- Display information modal box ---*/
@@ -15,3 +14,16 @@ $(document).ready(function(){
 });
 
 
+function newGame() {
+
+}
+
+function genNum(num) {
+	var num = Math.floor((Math.random() * 100) + 1);
+	return num;
+}
+genNum();
+
+function userFeedback() {
+	
+}
