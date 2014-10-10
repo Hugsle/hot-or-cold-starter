@@ -11,28 +11,37 @@ $(document).ready(function() {
         $(".overlay").fadeOut(1000);
     });
 
-});
+
 
 
 function newGame() {
 
 }
 /*---Generate Number---*/
+function generateNumber() {
 
-        var genNum = Math.floor((Math.random() * 100) + 1);
-        console.log("Generated Random Number = " + genNum);
+  var genNum = Math.floor((Math.random() * 100) + 1);
+  console.log("Generated Random Number = " + genNum);
+  return genNum;
+  
+}
+
 
 /*---Capture/Evaluate Input---*/
     function userInput() {
+
+      var input = null;
+      var num = generateNumber();
         $('#guessButton').on('click', function(e) {
             e.preventDefault();
-            var input = $("#userGuess").val();
+            input = $("#userGuess").val();
             console.log("The input was " + input);
-        if (input > genNum){
+
+        if (input > num){
             console.log("Higher");
-        } else if (input < genNum) {
+        } else if (input < num) {
             console.log("Lower");
-        } else if (input == genNum) {
+        } else if (input == num) {
             console.log("You got it!");
         }
         ;
@@ -44,3 +53,4 @@ function newGame() {
 function inputEval() {
 
 }
+});
