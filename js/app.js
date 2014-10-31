@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+var guesses;
+var counter;
+var input;
     /*--- Display information modal box ---*/
     $(".what").click(function() {
         $(".overlay").fadeIn(1000);
@@ -10,19 +13,26 @@ $(document).ready(function() {
     $("a.close").click(function() {
         $(".overlay").fadeOut(1000);
     });
-    /*---Display Invaid Value Text---
+    /*---Display Invaid Value Text---*/
+function inputValidation() {
     if (input < 1 && input > 100){
           $("form").show("<div>Please enter a number between 1 to 100!</div>");
-        }*/
-
+      }
+}
+inputValidation();
 /*----Refresh Page---*/
 function newGame() {
   $('.new').on('click', function() {
     counter = 0;
     num = generateNumber();
     guesses = [];
+    $('#count').text(0);
+    $('#feedback').text("Make your Guess!");
+    $('#guessList').text("");
+    $('#userGuess').text("");
   });
 }
+newGame();
 /*---Generate Number---*/
 function generateNumber() {
 
@@ -35,11 +45,11 @@ function generateNumber() {
 
 /*---Capture/Evaluate Input---*/
     function userInput() {
-      var counter = 0;
+      counter = 0;
       $('#count').text(counter);
-      var input = null;
+      input = null;
       var num = generateNumber();
-      var guesses = [];
+      guesses = [];
         $('#guessButton').on('click', function(e) {
             e.preventDefault();
             counter +=1;
@@ -51,7 +61,7 @@ function generateNumber() {
             $('#guessList').append("<li>" + input + "</li>");
             console.log(guesses);
 
-        if (input == num){
+        if (input === num){  
           $('#feedback').text("You got it!");
             console.log("You got it!");
         } else if ((input - num) <= 15 && (input - num) > 0) {
