@@ -16,8 +16,8 @@ var input;
     /*---Display Invaid Value Text---*/
 function inputValidation() {
     if (input < 1 && input > 100){
-          $("form").show("<div>Please enter a number between 1 to 100!</div>");
-      }
+          console.log("Please enter a number between 1 and 100");
+      };
 }
 inputValidation();
 /*----Refresh Page---*/
@@ -29,7 +29,7 @@ function newGame() {
     $('#count').text(0);
     $('#feedback').text("Make your Guess!");
     $('#guessList').text("");
-    $('#userGuess').text("");
+    $('#userGuess').val("");
   });
 }
 newGame();
@@ -61,7 +61,7 @@ function generateNumber() {
             $('#guessList').append("<li>" + input + "</li>");
             console.log(guesses);
 
-        if (input === num){  
+        if (input == num) {  
           $('#feedback').text("You got it!");
             console.log("You got it!");
         } else if ((input - num) <= 15 && (input - num) > 0) {
@@ -71,11 +71,24 @@ function generateNumber() {
           $('#feedback').text("Blistering Cold!");
             console.log("Colder");
         } else if ((input - num) <= 30 && (input - num) > 0) {
+          $('#feedback').text("Hot!");
+        } else if ((num - input) <= 30 && (num - input) > 0) {
+          $('#feedback').text("Cold!");
+        } else if ((input - num) <= 50 && (input - num) > 0) {
           $('#feedback').text("Getting Hotter!");
-        } else if ((num - input) <= 30 && (num - input) > 0)
-        ; $('#feedback').text("Getting Colder!");
+        } else if ((num - input) <= 50 && (num - input) > 0)
+          $('#feedback').text("Getting Colder!"); 
         });
     }
     ;
     userInput();
 });
+/*---Game Over---*/
+function gameOver() {
+  var counter;
+  if (counter == 10) {
+    $('#feedback').text("Game Over!");
+    newGame();
+  };
+}
+gameOver();
